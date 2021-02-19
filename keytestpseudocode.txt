@@ -1,0 +1,11 @@
+def checklicense(key):
+	allowed = True
+	if int(key.split("-")[0]) % 7 != 0:
+		allowed = False
+	if int(key.split("-")[1][0])+int(key.split("-")[1][1]) != 6:
+		allowed = False
+	if int(key.split("-")[1][2:4]) % 13 != 0:
+		allowed = False
+	if int(key.split("-")[1][4]) % 2 == 0:
+		allowed = False		
+	return allowed
