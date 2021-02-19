@@ -1,0 +1,22 @@
+{
+  "name": "sports-carnival-app",
+  "version": "0.0.0",
+  "description": "Track sports carnival points easily!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxfire2008/sports-carnival-app.git"
+  },
+  "author": "Max Burgess",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxfire2008/sports-carnival-app/issues"
+  },
+  "homepage": "https://github.com/maxfire2008/sports-carnival-app#readme",
+  "devDependencies": {
+    "electron": "^11.2.3"
+  }
+}
