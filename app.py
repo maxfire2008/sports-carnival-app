@@ -2,6 +2,7 @@ from flask import Flask
 import webbrowser
 import psutil
 import os
+import requests
 
 app = Flask(__name__)
 
@@ -9,6 +10,7 @@ disk_partitions = psutil.disk_partitions()
 for disk in disk_partitions:
     try:
         open(os.path.join(disk.mountpoint,".carnvial-app-drive")).read()
+        os.listdir(os.path.join(disk.mountpoint,"carnivaldata"))
         break
     except:
         print("Drive not avalible")
