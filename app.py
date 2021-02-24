@@ -61,7 +61,7 @@ def savefile(data):
 
 @app.route('/')
 def index():
-    syncdata()
+    syncdata()#function testonline() { fetch("/").then(function() {testonline()}).catch(function() {window.close();});};testonline();
     return 'Send data to server <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe><form action="/entertestrace" method="post" target="dummyframe"><input name="d"><button>Send</button></form>'
 @app.route('/entertestrace',methods = ['POST'])
 def entertestrace():
@@ -69,5 +69,5 @@ def entertestrace():
     savefile(data)
 
 if __name__ == "__main__":
-##    webbrowser.open("http://localhost:6829")
+    webbrowser.open("http://localhost:6829")
     app.run(port="6829",host="localhost")
