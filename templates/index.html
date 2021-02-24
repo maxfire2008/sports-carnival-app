@@ -13,19 +13,5 @@
 				Send
 			</button>
 		</form>
-		<script>
-			function testonline() {
-				fetch("/").then(
-					function() {
-						testonline();
-					}
-				).catch(
-					function() {
-						window.close();
-					}
-				);
-			}
-			testonline();
-		</script>
 	</body>
 </html>
