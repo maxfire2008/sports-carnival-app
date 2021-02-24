@@ -1,0 +1,38 @@
+{
+	"yeargroup": [
+		{
+			"id": "7CRM",
+			"gender": "Male",
+			"year": "7",
+			"house": "Crayfish",
+			"students": [
+				{
+					"firstname": "Max",
+					"lastname": "Burgess",
+					"prefname": null,
+					"username": "max.burgess.00",
+				},
+				{
+					"firstname": "Huon",
+					"lastname": "Ovington",
+					"prefname": null,
+					"username": "huon.ovington.00"
+				}
+			],
+		},
+		{
+			"id": "43DRM",
+			"gender": "Male",
+			"year": "43",
+			"house": "Droughty",
+			"students": [
+				{
+					"firstname": "Mark",
+					"lastname": "Morffew",
+					"prefname": null,
+					"username": "mark.morffew"
+				}
+			],
+		}
+	],
+}

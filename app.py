@@ -51,22 +51,35 @@ def syncdata():
                 shutil.copyfile(os.path.join(diskdir,"clientincoming",file),os.path.join(tmpdir,"clientincoming",file))
 
 def savefile(data):
-    disk = getdisk()
     tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
     filename = base64.urlsafe_b64encode(str(time.time()).encode()[-8:]+os.urandom(4)).decode()
-    with open(os.path.join(tmpdir,"clientoutgoing",filename+".crn"),"w+") as savefile:
+    with open(os.path.join(tmpdir,"clientoutgoing",filename+".cao"),"w+") as savefile:
         savefile.write(data)
         savefile.close()
     syncdata()
+def openfile(name):
+    try:
+        syncdata()
+        tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
+        return open(os.path.join(tmpdir,"clientincoming",name+".cai"),"rb").read().decode()
+    except:
+        return None
 
 @app.route('/')
 def index():
     syncdata()
     return flask.render_template('index.html')
-@app.route('/entertestrace',methods = ['POST'])
-def entertestrace():
+@app.route('/recievedata',methods = ['POST'])
+def recievedata():
     data = flask.request.form['d']
     savefile(data)
+@app.route('/retrievestudents')
+def retrievestudents():
+    filecontent = openfile("students")
+    if filecontent:
+        return filecontent
+    else:
+        return ""
 
 if __name__ == "__main__":
     webbrowser.open("http://localhost:6829")
