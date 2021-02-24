@@ -61,8 +61,8 @@ def savefile(data):
 
 @app.route('/')
 def index():
-    syncdata()#function testonline() { fetch("/").then(function() {testonline()}).catch(function() {window.close();});};testonline();
-    return 'Send data to server <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe><form action="/entertestrace" method="post" target="dummyframe"><input name="d"><button>Send</button></form>'
+    syncdata()
+    return flask.render_template('index.html')
 @app.route('/entertestrace',methods = ['POST'])
 def entertestrace():
     data = flask.request.form['d']

@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>
+			Sports Carnival Point Tracker
+		</title>
+	</head>
+	<body>
+		Send data to server
+		<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
+		<form action="/entertestrace" method="post" target="dummyframe">
+			<input name="d">
+			<button>
+				Send
+			</button>
+		</form>
+		<script>
+			function testonline() {
+				fetch("/").then(
+					function() {
+						testonline();
+					}
+				).catch(
+					function() {
+						window.close();
+					}
+				);
+			}
+			testonline();
+		</script>
+	</body>
+</html>
