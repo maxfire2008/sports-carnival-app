@@ -1,0 +1,13 @@
+{
+	"events": [
+		"7M800": {
+			"name": "Grade 7 Boys 800m",
+			"yeargroup": "7",
+			"gender": "M",
+			"type": "track",
+			"distance": "800m",
+			"heats": [
+			]
+		}
+	]
+}

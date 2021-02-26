@@ -7,6 +7,7 @@ import time
 import base64
 import tempfile
 import shutil
+import json
 
 app = flask.Flask(__name__)
 
@@ -25,7 +26,7 @@ def checkfoldersandcreate():
     except:
         os.mkdir(os.path.join(tmpdir,"carnivaldata","clientincoming"))
 checkfoldersandcreate()
-        
+
 def getdisk():
     disk_partitions = psutil.disk_partitions()
     for disktosearch in disk_partitions:
@@ -64,6 +65,48 @@ def openfile(name):
         return open(os.path.join(tmpdir,"clientincoming",name+".cai"),"rb").read().decode()
     except:
         return None
+def loaddata():
+    syncdata()
+    dataloaded = {}
+    disk = getdisk()
+    if disk:
+        diskdir = os.path.join(disk.mountpoint,"carnivaldata")
+    tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
+    for filename in os.listdir(os.path.join(tmpdir,"clientincoming")):
+        if filename.endswith(".cai"):
+            try:
+                filecontents = json.loads(open(os.path.join(tmpdir,"clientincoming",filename),"rb").read().decode())
+            except Exception as e:
+                print(e,os.path.join(tmpdir,"clientincoming",filename))
+                filecontents = {}
+            dataloaded = {**dataloaded,**filecontents}
+    if disk:
+        for filename in os.listdir(os.path.join(diskdir,"clientincoming")):
+            if filename.endswith(".cai"):
+                try:
+                    filecontents = json.loads(open(os.path.join(diskdir,"clientincoming",filename),"rb").read().decode())
+                except Exception as e:
+                    print(e,os.path.join(diskdir,"clientincoming",filename))
+                    filecontents = {}
+                dataloaded = {**dataloaded,**filecontents}
+        for filename in os.listdir(os.path.join(diskdir,"clientoutgoing")):
+            if filename.endswith(".cao"):
+                try:
+                    filecontents = json.loads(open(os.path.join(diskdir,"clientoutgoing",filename),"rb").read().decode())
+                except Exception as e:
+                    print(e,os.path.join(diskdir,"clientoutgoing",filename))
+                    filecontents = {}
+                dataloaded = {**dataloaded,**filecontents}
+    for filename in os.listdir(os.path.join(tmpdir,"clientoutgoing")):
+        if filename.endswith(".cao"):
+            try:
+                filecontents = json.loads(open(os.path.join(tmpdir,"clientoutgoing",filename),"rb").read().decode())
+            except Exception as e:
+                print(e,os.path.join(tmpdir,"clientoutgoing",filename))
+                filecontents = {}
+            dataloaded = {**dataloaded,**filecontents}
+    
+    return dataloaded
 
 @app.route('/')
 def index():
@@ -71,15 +114,17 @@ def index():
     return flask.render_template('index.html')
 @app.route('/recievedata',methods = ['POST'])
 def recievedata():
-    data = flask.request.form['d']
-    savefile(data)
-@app.route('/retrievestudents')
-def retrievestudents():
-    filecontent = openfile("students")
-    if filecontent:
-        return filecontent
-    else:
-        return ""
+    data = {"rawrequest":flask.request.form['d'],"time":time.time()}
+    datajs = json.dumps(datajs)
+    savefile(datajs)
+@app.route('/retrievedata')
+def retrievedata():
+    return loaddata()
+
+
+# import eventselect
+
+
 
 if __name__ == "__main__":
     webbrowser.open("http://localhost:6829")

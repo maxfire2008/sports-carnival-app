@@ -1,38 +1,37 @@
 {
-	"yeargroup": [
-		{
-			"id": "7CRM",
-			"gender": "Male",
+	"students": {
+		"7M": {
+			"gender": "M",
 			"year": "7",
-			"house": "Crayfish",
 			"students": [
 				{
 					"firstname": "Max",
 					"lastname": "Burgess",
 					"prefname": null,
 					"username": "max.burgess.00",
+					"house": "Crayfish",
 				},
 				{
 					"firstname": "Huon",
 					"lastname": "Ovington",
 					"prefname": null,
-					"username": "huon.ovington.00"
+					"username": "huon.ovington.00",
+					"house": "Crayfish",
 				}
 			],
 		},
-		{
-			"id": "43DRM",
-			"gender": "Male",
+		"43M": {
+			"gender": "M",
 			"year": "43",
-			"house": "Droughty",
 			"students": [
 				{
 					"firstname": "Mark",
 					"lastname": "Morffew",
 					"prefname": null,
-					"username": "mark.morffew"
+					"username": "mark.morffew",
+					"house": "Droughty"
 				}
 			],
 		}
-	],
+	}
 }
