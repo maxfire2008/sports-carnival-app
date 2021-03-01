@@ -7,7 +7,7 @@
 			"type": "track",
 			"distance": "800m",
 			"heats": {
-				0: [
+				"0": {
 					"max.burgess.00": {
 						"type":"time",
 						"time":132023
@@ -20,7 +20,7 @@
 						"type":"place",
 						"place":3
 					}
-				]
+				}
 			}
 		},
 		"7F800": {
