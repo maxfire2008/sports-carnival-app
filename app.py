@@ -80,6 +80,7 @@ def loaddata():
                 print(e,os.path.join(tmpdir,"clientincoming",filename))
                 filecontents = {}
             dataloaded = {**dataloaded,**filecontents}
+            print(dataloaded)
     if disk:
         for filename in os.listdir(os.path.join(diskdir,"clientincoming")):
             if filename.endswith(".cai"):
@@ -89,6 +90,7 @@ def loaddata():
                     print(e,os.path.join(diskdir,"clientincoming",filename))
                     filecontents = {}
                 dataloaded = {**dataloaded,**filecontents}
+                print(dataloaded)
         for filename in os.listdir(os.path.join(diskdir,"clientoutgoing")):
             if filename.endswith(".cao"):
                 try:
@@ -97,6 +99,7 @@ def loaddata():
                     print(e,os.path.join(diskdir,"clientoutgoing",filename))
                     filecontents = {}
                 dataloaded = {**dataloaded,**filecontents}
+                print(dataloaded)
     for filename in os.listdir(os.path.join(tmpdir,"clientoutgoing")):
         if filename.endswith(".cao"):
             try:
@@ -105,6 +108,7 @@ def loaddata():
                 print(e,os.path.join(tmpdir,"clientoutgoing",filename))
                 filecontents = {}
             dataloaded = {**dataloaded,**filecontents}
+            print(dataloaded)
     
     return dataloaded
 
