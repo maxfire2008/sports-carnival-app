@@ -29,7 +29,7 @@
 			"gender": "F",
 			"type": "track",
 			"distance": "800m",
-			"heats": []
+			"heats": {}
 		}
 	}
 }

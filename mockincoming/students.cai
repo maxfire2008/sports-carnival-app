@@ -3,39 +3,38 @@
 		"7M": {
 			"gender": "M",
 			"year": "7",
-			"students": [{
+			"students": {
+				"max.burgess.00": {
 					"firstname": "Max",
 					"lastname": "Burgess",
 					"prefname": null,
-					"username": "max.burgess.00",
 					"house": "Crayfish"
 				},
-				{
+				"huon.ovington.00": {
 					"firstname": "Huon",
 					"lastname": "Ovington",
 					"prefname": null,
-					"username": "huon.ovington.00",
 					"house": "Crayfish"
 				},
-				{
+				"joe.johnson.00": {
 					"firstname": "Joe",
 					"lastname": "Johnson",
 					"prefname": null,
-					"username": "joe.johnson.00",
 					"house": "Crayfish"
 				}
-			]
+			}
 		},
 		"43M": {
 			"gender": "M",
 			"year": "43",
-			"students": [{
-				"firstname": "Mark",
-				"lastname": "Morffew",
-				"prefname": null,
-				"username": "mark.morffew",
-				"house": "Droughty"
-			}]
+			"students": {
+				"mark.morffew": {
+					"firstname": "Mark",
+					"lastname": "Morffew",
+					"prefname": null,
+					"house": "Droughty"
+				}
+			}
 		}
 	}
 }
