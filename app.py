@@ -53,11 +53,12 @@ def syncdata():
 
 def savefile(data):
     tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
-    filename = base64.urlsafe_b64encode(str(time.time()).encode()[-8:]+os.urandom(4)).decode()
+    filename = str(int(time.time()*1000))
     with open(os.path.join(tmpdir,"clientoutgoing",filename+".cao"),"w+") as savefile:
         savefile.write(data)
         savefile.close()
     syncdata()
+    return os.path.join(tmpdir,"clientoutgoing",filename+".cao")
 def openfile(name):
     try:
         syncdata()
@@ -72,7 +73,7 @@ def loaddata():
     if disk:
         diskdir = os.path.join(disk.mountpoint,"carnivaldata")
     tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
-    for filename in os.listdir(os.path.join(tmpdir,"clientincoming")):
+    for filename in sorted(os.listdir(os.path.join(tmpdir,"clientincoming"))):
         if filename.endswith(".cai"):
             try:
                 filecontents = json.loads(open(os.path.join(tmpdir,"clientincoming",filename),"rb").read().decode())
@@ -82,7 +83,7 @@ def loaddata():
             dataloaded = {**dataloaded,**filecontents}
             print(dataloaded)
     if disk:
-        for filename in os.listdir(os.path.join(diskdir,"clientincoming")):
+        for filename in sorted(os.listdir(os.path.join(diskdir,"clientincoming"))):
             if filename.endswith(".cai"):
                 try:
                     filecontents = json.loads(open(os.path.join(diskdir,"clientincoming",filename),"rb").read().decode())
@@ -91,7 +92,7 @@ def loaddata():
                     filecontents = {}
                 dataloaded = {**dataloaded,**filecontents}
                 print(dataloaded)
-        for filename in os.listdir(os.path.join(diskdir,"clientoutgoing")):
+        for filename in sorted(os.listdir(os.path.join(diskdir,"clientoutgoing"))):
             if filename.endswith(".cao"):
                 try:
                     filecontents = json.loads(open(os.path.join(diskdir,"clientoutgoing",filename),"rb").read().decode())
@@ -100,7 +101,7 @@ def loaddata():
                     filecontents = {}
                 dataloaded = {**dataloaded,**filecontents}
                 print(dataloaded)
-    for filename in os.listdir(os.path.join(tmpdir,"clientoutgoing")):
+    for filename in sorted(os.listdir(os.path.join(tmpdir,"clientoutgoing"))):
         if filename.endswith(".cao"):
             try:
                 filecontents = json.loads(open(os.path.join(tmpdir,"clientoutgoing",filename),"rb").read().decode())
@@ -116,14 +117,14 @@ def loaddata():
 def index():
     syncdata()
     return flask.render_template('index.html')
-@app.route('/recievedata',methods = ['POST'])
+@app.route('/api/recievedata',methods = ['POST'])
 def recievedata():
-    data = {"rawrequest":flask.request.form['d'],"time":time.time()}
-    datajs = json.dumps(datajs)
-    savefile(datajs)
-@app.route('/retrievedata')
+    data = {"raw_data_at"+str(time.time()):{"rawrequest":flask.request.form['d'],"time":time.time()}}
+    datajs = json.dumps(data)
+    return savefile(datajs)
+@app.route('/api/retrievedata')
 def retrievedata():
-    return loaddata()
+    return json.dumps(loaddata())
 
 
 # import eventselect
