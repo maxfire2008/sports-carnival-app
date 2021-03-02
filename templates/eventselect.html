@@ -1,13 +1,31 @@
 <html>
 	<head>
 		<title>
-			Choose Students
+			Events
 		</title>
 		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.2.0/css/all.css">
 		<link rel="stylesheet" href="/static/main.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<h1>{{eventid}}</h1>
+		<h1>Select An Event To Edit</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Event Name</th>
+					<th>Edit Students</th>
+					<th>Edit Times</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for event in events %}
+					<tr>
+						<td>{{ event[1] }}</td>
+						<td><a href="/choosestudents/{{ event[0] }}"><i class="fa fa-users" aria-hidden="true"></i></a></td>
+						<td><a href="/edit{{ event[2] }}times/{{ event[0] }}"><i class="fa fa-stopwatch" aria-hidden="true"></i></a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</body>
 </html>
