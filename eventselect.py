@@ -1,7 +1,8 @@
 print("Module EventSelect loaded.")
-from app import app, savefile, openfile
+from app import app, savefile, openfile, loaddata
 import flask
 
-@app.route("/eventselect")
-def eventselect():
-    return flask.render_template("eventselect.html",students=)
+@app.route("/choosestudents/<eventid>")
+def choosestudents(eventid):
+    data = loaddata()
+    return flask.render_template("choosestudents.html",eventid=eventid)

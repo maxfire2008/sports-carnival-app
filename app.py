@@ -127,10 +127,10 @@ def retrievedata():
     return json.dumps(loaddata())
 
 
-# import eventselect
+import eventselect
 
 
 
-if __name__ == "__main__":
-    webbrowser.open("http://localhost:6829")
-    app.run(port="6829",host="localhost")
+# if __name__ == "__main__":
+    # webbrowser.open("http://localhost:6829")
+    # app.run(port="6829",host="localhost")
