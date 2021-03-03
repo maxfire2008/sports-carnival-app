@@ -11,6 +11,12 @@ import json
 
 app = flask.Flask(__name__)
 
+webpageuid = 0
+def getuid():
+    global webpageuid
+    webpageuid += 1
+    return webpageuid
+
 def checkfoldersandcreate():
     tmpdir = tempfile.gettempdir()
     try:

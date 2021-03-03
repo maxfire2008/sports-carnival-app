@@ -9,5 +9,24 @@
 	</head>
 	<body>
 		<h1>{{eventid}}</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Student</th>
+					<th>Heat</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+						<td>{{ student[0] }}</td>
+						<td>
+							<input class="heatinput" value="{{ student[2] }}" type="number", min=0, id="inputNumber{{ student[3] }}">
+							<i class="fa fa-plus-square changebutton"></i>
+							<i class="fa fa-minus-square changebutton"></i>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</body>
 </html>
