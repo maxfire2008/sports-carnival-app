@@ -6,18 +6,28 @@
 			"gender": "M",
 			"type": "track",
 			"distance": "800m",
-			"heats": {
-				"0": {
-					"max.burgess.00": {
-						"type":"time",
-						"time":132023
-					},
-					"joe.johnson.00": {
-						"type":"place",
-						"place":3
-					},
-					"huon.ovington.00": null
+			"entrants": {
+				"max.burgess.00": {
+					"type":"time",
+					"time":132023,
+					"heat":0
+				},
+				"joe.johnson.00": {
+					"type":"place",
+					"place":3,
+					"heat":0
+				},
+				"joe.johnson.00": {
+					"type":"place",
+					"place":3,
+					"heat":0
+				},
+				"a.a.00": {
+					"type":"time",
+					"time":212023,
+					"heat":0
 				}
+				"huon.ovington.00": null
 			}
 		},
 		"7F800": {
@@ -26,7 +36,7 @@
 			"gender": "F",
 			"type": "track",
 			"distance": "800m",
-			"heats": {}
+			"entrants": {}
 		},
 		"7*800": null
 	}

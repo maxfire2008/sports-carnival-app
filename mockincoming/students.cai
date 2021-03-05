@@ -21,6 +21,24 @@
 					"lastname": "Johnson",
 					"prefname": "Joey",
 					"house": "Cartwright"
+				},
+				"a.a.00": {
+					"firstname": "a",
+					"lastname": "a",
+					"prefname": null,
+					"house": "Cartwright"
+				},
+				"b.b.00": {
+					"firstname": "b",
+					"lastname": "b",
+					"prefname": null,
+					"house": "Cartwright"
+				},
+				"c.c.00": {
+					"firstname": "c",
+					"lastname": "c",
+					"prefname": null,
+					"house": "Crayfish"
 				}
 			}
 		},
