@@ -1,6 +1,7 @@
 print("Module ChooseStudents loaded.")
 from app import app, savefile, openfile, loaddata, getuid
 import flask
+import json
 
 @app.route("/choosestudents/<eventid>")
 def choosestudents(eventid):
@@ -11,7 +12,8 @@ def choosestudents(eventid):
         for heat in data["events"][eventid]["heats"]:
             inheat = []
             for student in data["events"][eventid]["heats"][heat]:
-                inheat.append(student)
+                if data["events"][eventid]["heats"][heat][student] != None:
+                    inheat.append(student)
             studentsheats[heat] = inheat
             allstudentsselected+=inheat
         students = []
@@ -26,9 +28,20 @@ def choosestudents(eventid):
                         for heatname in studentsheats:
                             if student in studentsheats[heatname]:
                                 break
-                        students.append([student_name,student,heatname,getuid()])
+                        students.append([student_name,student,int(heatname)+1,getuid()])
                     else:
                         students.append([student_name,student,"",getuid()])
         return flask.render_template("choosestudents.html",eventid=eventid,students=sorted(students))
     else:
         return "Event not found"
+
+@app.route("/savestudents/<eventid>",methods = ['POST'])
+def savestudents(eventid):
+    print(flask.request.data.decode())
+    requestdata = json.loads(flask.request.data.decode())
+    currentdata = loaddata()
+    newdata = currentdata[eventid]["heats"]
+    for student in requestdata:
+        if requestdata["student"] != "":
+            
+    return ""

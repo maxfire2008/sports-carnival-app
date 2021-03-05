@@ -14,7 +14,7 @@
 				<tr>
 					<th>Event Name</th>
 					<th>Edit Students</th>
-					<th>Edit Times</th>
+					<th>Edit Results</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,7 +22,7 @@
 					<tr>
 						<td>{{ event[1] }}</td>
 						<td><a href="/choosestudents/{{ event[0] }}"><i class="fa fa-users" aria-hidden="true"></i></a></td>
-						<td><a href="/edit{{ event[2] }}times/{{ event[0] }}"><i class="fa fa-stopwatch" aria-hidden="true"></i></a></td>
+						<td><a href="/edit{{ event[2] }}results/{{ event[0] }}"><i class="fa fa-stopwatch" aria-hidden="true"></i></a></td>
 					</tr>
 				{% endfor %}
 			</tbody>

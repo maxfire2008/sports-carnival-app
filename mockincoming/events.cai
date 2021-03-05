@@ -15,7 +15,8 @@
 					"joe.johnson.00": {
 						"type":"place",
 						"place":3
-					}
+					},
+					"huon.ovington.00": null
 				}
 			}
 		},
@@ -26,6 +27,7 @@
 			"type": "track",
 			"distance": "800m",
 			"heats": {}
-		}
+		},
+		"7*800": null
 	}
 }
