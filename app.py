@@ -51,11 +51,9 @@ def syncdata():
         tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
         diskdir = os.path.join(disk.mountpoint,"carnivaldata")
         for file in os.listdir(os.path.join(tmpdir,"clientoutgoing")):
-            if file not in os.listdir(os.path.join(diskdir,"clientoutgoing")):
-                shutil.copyfile(os.path.join(tmpdir,"clientoutgoing",file),os.path.join(diskdir,"clientoutgoing",file))
+            shutil.copyfile(os.path.join(tmpdir,"clientoutgoing",file),os.path.join(diskdir,"clientoutgoing",file))
         for file in os.listdir(os.path.join(diskdir,"clientincoming")):
-            if file not in os.listdir(os.path.join(tmpdir,"clientincoming")):
-                shutil.copyfile(os.path.join(diskdir,"clientincoming",file),os.path.join(tmpdir,"clientincoming",file))
+            shutil.copyfile(os.path.join(diskdir,"clientincoming",file),os.path.join(tmpdir,"clientincoming",file))
 
 def savefile(data):
     tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
@@ -79,6 +77,7 @@ def loaddata():
     if disk:
         diskdir = os.path.join(disk.mountpoint,"carnivaldata")
     tmpdir = os.path.join(tempfile.gettempdir(),"carnivaldata")
+    filesread = []
     for filename in sorted(os.listdir(os.path.join(tmpdir,"clientincoming"))):
         if filename.endswith(".cai"):
             try:
@@ -86,7 +85,7 @@ def loaddata():
             except Exception as e:
                 print(e,os.path.join(tmpdir,"clientincoming",filename))
                 filecontents = {}
-            dataloaded = {**dataloaded,**filecontents}
+            filesread.append([filename,filecontents])
     if disk:
         for filename in sorted(os.listdir(os.path.join(diskdir,"clientincoming"))):
             if filename.endswith(".cai"):
@@ -95,7 +94,7 @@ def loaddata():
                 except Exception as e:
                     print(e,os.path.join(diskdir,"clientincoming",filename))
                     filecontents = {}
-                dataloaded = {**dataloaded,**filecontents}
+                filesread.append([filename,filecontents])
         for filename in sorted(os.listdir(os.path.join(diskdir,"clientoutgoing"))):
             if filename.endswith(".cao"):
                 try:
@@ -103,7 +102,7 @@ def loaddata():
                 except Exception as e:
                     print(e,os.path.join(diskdir,"clientoutgoing",filename))
                     filecontents = {}
-                dataloaded = {**dataloaded,**filecontents}
+                filesread.append([filename,filecontents])
     for filename in sorted(os.listdir(os.path.join(tmpdir,"clientoutgoing"))):
         if filename.endswith(".cao"):
             try:
@@ -111,7 +110,10 @@ def loaddata():
             except Exception as e:
                 print(e,os.path.join(tmpdir,"clientoutgoing",filename))
                 filecontents = {}
-            dataloaded = {**dataloaded,**filecontents}
+            filesread.append([filename,filecontents])
+    
+    for file in sorted(filesread):
+        dataloaded = {**dataloaded,**file[1]}
     
     return dataloaded
 

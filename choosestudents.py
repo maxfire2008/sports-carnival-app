@@ -7,18 +7,19 @@ import json
 def choosestudents(eventid):
     data = loaddata()
     if "events" in data and eventid in data["events"] and data["events"][eventid] != None:
+        students = []
         for agegroup in data["students"]:
-            for student in data["students"][agegroup]["students"]:
-                if data["students"][agegroup]["students"][student]["prefname"]:
-                    student_name = data["students"][agegroup]["students"][student]["prefname"]
-                else:
-                    student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
-                # student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
-                print(data["events"][eventid])
-                if student in data["events"][eventid]["entrants"]:
-                    students.append([student_name,student,int(data["events"][eventid]["entrants"]["heat"])+1,getuid()])
-                else:
-                    students.append([student_name,student,"",getuid()])
+            if data["students"][agegroup] != None and (data["events"][eventid]["gender"] == data["students"][agegroup]["gender"] or data["events"][eventid]["gender"] == "*") and (data["events"][eventid]["year"] == data["students"][agegroup]["year"] or data["events"][eventid]["year"] == "*"):
+                for student in data["students"][agegroup]["students"]:
+                    if data["students"][agegroup]["students"][student]["prefname"]:
+                        student_name = data["students"][agegroup]["students"][student]["prefname"]
+                    else:
+                        student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
+                    # student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
+                    if student in data["events"][eventid]["entrants"] and data["events"][eventid]["entrants"][student] != None:
+                        students.append([student_name,student,int(data["events"][eventid]["entrants"][student]["heat"])+1,getuid()])
+                    else:
+                        students.append([student_name,student,"",getuid()])
         return flask.render_template("choosestudents.html",eventid=eventid,students=sorted(students))
     else:
         return "Event not found"
