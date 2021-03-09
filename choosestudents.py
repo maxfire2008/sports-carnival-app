@@ -14,6 +14,7 @@ def choosestudents(eventid):
                 else:
                     student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
                 # student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
+                print(data["events"][eventid])
                 if student in data["events"][eventid]["entrants"]:
                     students.append([student_name,student,int(data["events"][eventid]["entrants"]["heat"])+1,getuid()])
                 else:
