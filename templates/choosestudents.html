@@ -18,7 +18,7 @@
 			</thead>
 			<tbody>
 				{% for student in students %}
-						<td>{{ student[0] }}</td>
+						<td><a href="#" title="{{ student[1] }}" style="text-decoration:none;color:black">{{ student[0] }}</a></td>
 						<td>
 							<input class="heatinput" value="{{ student[2] }}" type="value", min=1, id="inputNumber{{ student[3] }}">
 							<button class="fa fa-plus-square changebutton" id="plusButton{{ student[3] }}"></button>
