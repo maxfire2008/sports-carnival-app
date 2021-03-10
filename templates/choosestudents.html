@@ -29,6 +29,7 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		<button onclick="save()">Save!</button>
 	</body>
 	<script>
 		{% for student in students %}
@@ -44,9 +45,9 @@
 			inputNumber{{ student[3] }}.value="";
 		}
 		{% endfor %}
-		function saveButton () {
+		function save () {
 			var xhr = new XMLHttpRequest();
-			xhr.open("POST", "/savestudents/{{eventid}}", true);
+			xhr.open("POST", "/api/savestudents/{{eventid}}", true);
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.send(
 				JSON.stringify(

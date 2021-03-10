@@ -24,13 +24,20 @@ def choosestudents(eventid):
     else:
         return "Event not found"
 
-# @app.route("/savestudents/<eventid>",methods = ['POST'])
-# def savestudents(eventid):
-    # print(flask.request.data.decode())
-    # requestdata = json.loads(flask.request.data.decode())
-    # currentdata = loaddata()
-    # newdata = currentdata[eventid]["heats"]
-    # for student in requestdata:
-        # if requestdata["student"] != "":
-            # None
-    # return ""
+@app.route("/api/savestudents/<eventid>",methods = ['POST'])
+def savestudents(eventid):
+    print(flask.request.data.decode())
+    requestdata = json.loads(flask.request.data.decode())
+    currentdata = loaddata()
+    newdata = currentdata["events"][eventid]["entrants"]
+    for student in requestdata:
+        if requestdata[student] != "" and student in newdata and newdata[student] != None and (int(requestdata[student])-1) != newdata[student]["heat"]:
+            newdata[student]["heat"] = int(requestdata[student])-1
+        elif requestdata[student] != "" and (student not in newdata or newdata[student] == None):
+            newdata[student] = {'type': 'time', 'time': None, 'heat': int(requestdata[student])-1}
+        elif student in newdata and newdata[student] != None and requestdata[student] == "":
+            print("needtoremove")
+            newdata[student] = None
+    print(newdata)
+    savefile(json.dumps({"events":{eventid:{"entrants":newdata}}}))
+    return ""
