@@ -8,19 +8,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<h1>{{eventid}}</h1>
+		<h1><a href="#" title="{{ eventid }}" style="text-decoration:none;color:black">{{ eventname }}</a></h1>
 		<table>
 			<thead>
 				<tr>
 					<th>Student</th>
 					<th>Time</th>
+					<th>Rank</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for student in students %}
-						<td><a href="#" title="{{ student[1] }}" style="text-decoration:none;color:black">{{ student[0] }}</a></td>
 						<td>
-							<input class="heatinput" value="{{ student[2] }}" type="value", min=1, id="inputNumber{{ student[3] }}">
+							<a href="#" title="{{ student[1] }}" style="text-decoration:none;color:black">{{ student[0] }}</a>
+						</td>
+						<td>
+							
 						</td>
 					</tr>
 				{% endfor %}

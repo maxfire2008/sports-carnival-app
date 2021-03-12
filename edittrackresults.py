@@ -7,7 +7,16 @@ import json
 def edittrackresults(eventid):
     data = loaddata()
     if "events" in data and eventid in data["events"] and data["events"][eventid] != None:
-        return flask.render_template("edittrackresults.html",eventid=eventid)
+        heats = {}
+        for entrant in data["events"][eventid]["entrants"]:
+            if entrant != None:
+                if entrant["heat"] not in heats:
+                    heats[entrant["heat"]] = []
+                timeminutes = ""
+                timeseconds = ""
+                timemilliseconds = ""
+                students.append()
+        return flask.render_template("edittrackresults.html",eventid=eventid,eventname=data["events"][eventid]["name"])
     else:
         return "Event not found"
 
