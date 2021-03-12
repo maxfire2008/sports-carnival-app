@@ -42,6 +42,48 @@
 				}
 			}
 		},
+		"8F": {
+			"gender": "F",
+			"year": "8",
+			"students": {
+				"a.f.00": {
+					"firstname": "A",
+					"lastname": "F",
+					"prefname": null,
+					"house": "Crayfish"
+				},
+				"b.f.00": {
+					"firstname": "B",
+					"lastname": "F",
+					"prefname": null,
+					"house": "Crayfish"
+				},
+				"c.f.00": {
+					"firstname": "C",
+					"lastname": "F",
+					"prefname": "Ceefy",
+					"house": "Cartwright"
+				},
+				"d.f.00": {
+					"firstname": "d",
+					"lastname": "f",
+					"prefname": null,
+					"house": "Cartwright"
+				},
+				"e.f.00": {
+					"firstname": "e",
+					"lastname": "f",
+					"prefname": null,
+					"house": "Cartwright"
+				},
+				"f.f.00": {
+					"firstname": "f",
+					"lastname": "f",
+					"prefname": null,
+					"house": "Crayfish"
+				}
+			}
+		},
 		"43M": {
 			"gender": "M",
 			"year": "43",
