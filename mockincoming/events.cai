@@ -10,22 +10,26 @@
 				"max.burgess.00": {
 					"type":"time",
 					"time":132023,
-					"heat":0
+					"heat":0,
+					"display": 2
 				},
 				"joe.johnson.00": {
 					"type":"place",
 					"place":3,
-					"heat":0
+					"heat":0,
+					"display": 1
 				},
 				"joe.johnson.00": {
 					"type":"place",
 					"place":3,
-					"heat":0
+					"heat":0,
+					"display": 3
 				},
 				"a.a.00": {
 					"type":"time",
 					"time":212023,
-					"heat":0
+					"heat":0,
+					"display": 0
 				},
 				"huon.ovington.00": null
 			}
