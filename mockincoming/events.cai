@@ -19,12 +19,6 @@
 					"heat":0,
 					"display": 1
 				},
-				"joe.johnson.00": {
-					"type":"place",
-					"place":3,
-					"heat":0,
-					"display": 3
-				},
 				"a.a.00": {
 					"type":"time",
 					"time":212023,
