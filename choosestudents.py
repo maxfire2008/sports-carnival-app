@@ -16,10 +16,14 @@ def choosestudents(eventid):
                     else:
                         student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
                     # student_name = data["students"][agegroup]["students"][student]["firstname"]+" "+data["students"][agegroup]["students"][student]["lastname"]
-                    if student in data["events"][eventid]["entrants"] and data["events"][eventid]["entrants"][student] != None:
-                        students.append([int(data["events"][eventid]["entrants"][student]["display"]),student_name,student,int(data["events"][eventid]["entrants"][student]["heat"])+1,getuid()])
+                    if student in data["events"][eventid]["entrants"] and data["events"][eventid]["entrants"][student] != None and "display" in data["events"][eventid]["entrants"][student]:
+                        studentdisplaylocation = int(data["events"][eventid]["entrants"][student]["display"])
                     else:
-                        students.append([10000000,student_name,student,"",getuid()])
+                        studentdisplaylocation = 10000000
+                    if student in data["events"][eventid]["entrants"] and data["events"][eventid]["entrants"][student] != None:
+                        students.append([studentdisplaylocation,student_name,student,int(data["events"][eventid]["entrants"][student]["heat"])+1,getuid()])
+                    else:
+                        students.append([studentdisplaylocation,student_name,student,"",getuid()])
         return flask.render_template("choosestudents.html",eventid=eventid,students=sorted(students),eventname=data["events"][eventid]["name"])
     else:
         return "Event not found"

@@ -18,12 +18,12 @@
 			</thead>
 			<tbody>
 				{% for student in students %}
-						<td><a href="#" title="{{ student[1] }}" style="text-decoration:none;color:black">{{ student[0] }}</a></td>
+						<td><a href="#" title="{{ student[2] }}" style="text-decoration:none;color:black">{{ student[1] }}</a></td>
 						<td>
-							<input class="heatinput" value="{{ student[2] }}" type="value", min=1, id="inputNumber{{ student[3] }}">
-							<button class="fa fa-plus-square changebutton" id="plusButton{{ student[3] }}"></button>
-							<button class="fa fa-minus-square changebutton" id="minusButton{{ student[3] }}"></button>
-							<button class="fa fa-times-circle changebutton" id="clearButton{{ student[3] }}"></button>
+							<input class="heatinput" value="{{ student[3] }}" type="value", min=1, id="inputNumber{{ student[4] }}">
+							<button class="fa fa-plus-square changebutton" id="plusButton{{ student[4] }}"></button>
+							<button class="fa fa-minus-square changebutton" id="minusButton{{ student[4] }}"></button>
+							<button class="fa fa-times-circle changebutton" id="clearButton{{ student[4] }}"></button>
 						</td>
 					</tr>
 				{% endfor %}
@@ -33,16 +33,16 @@
 	</body>
 	<script>
 		{% for student in students %}
-		plusButton{{ student[3] }}.onclick = function () {
-			inputNumber{{ student[3] }}.value=Number(inputNumber{{ student[3] }}.value)+1;
+		plusButton{{ student[4] }}.onclick = function () {
+			inputNumber{{ student[4] }}.value=Number(inputNumber{{ student[4] }}.value)+1;
 		}
-		minusButton{{ student[3] }}.onclick = function () {
-			if (Number(inputNumber{{ student[3] }}.value) > 1) {
-				inputNumber{{ student[3] }}.value=Number(inputNumber{{ student[3] }}.value)-1;
+		minusButton{{ student[4] }}.onclick = function () {
+			if (Number(inputNumber{{ student[4] }}.value) > 1) {
+				inputNumber{{ student[4] }}.value=Number(inputNumber{{ student[4] }}.value)-1;
 			}
 		}
-		clearButton{{ student[3] }}.onclick = function () {
-			inputNumber{{ student[3] }}.value="";
+		clearButton{{ student[4] }}.onclick = function () {
+			inputNumber{{ student[4] }}.value="";
 		}
 		{% endfor %}
 		function save () {
@@ -53,7 +53,7 @@
 				JSON.stringify(
 					{
 						{% for student in students %}
-							"{{ student[1] }}": inputNumber{{ student[3] }}.value,
+							"{{ student[2] }}": inputNumber{{ student[4] }}.value,
 						{% endfor %}
 					}
 				)
