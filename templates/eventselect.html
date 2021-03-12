@@ -20,7 +20,7 @@
 			<tbody>
 				{% for event in events %}
 					<tr>
-						<td>{{ event[1] }}</td>
+						<td><a href="#" title="{{ event[0] }}" style="text-decoration:none;color:black">{{ event[1] }}</a></td>
 						<td><a href="/choosestudents/{{ event[0] }}"><i class="fa fa-users" aria-hidden="true"></i></a></td>
 						<td><a href="/edit{{ event[2] }}results/{{ event[0] }}"><i class="fa fa-stopwatch" aria-hidden="true"></i></a></td>
 					</tr>

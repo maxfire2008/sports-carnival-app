@@ -20,7 +20,7 @@ def choosestudents(eventid):
                         students.append([student_name,student,int(data["events"][eventid]["entrants"][student]["heat"])+1,getuid()])
                     else:
                         students.append([student_name,student,"",getuid()])
-        return flask.render_template("choosestudents.html",eventid=eventid,students=sorted(students))
+        return flask.render_template("choosestudents.html",eventid=eventid,students=sorted(students),eventname=data["events"][eventid]["name"])
     else:
         return "Event not found"
 

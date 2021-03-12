@@ -8,12 +8,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<h1><a href="#" title="{{ eventid }}" style="text-decoration:none;color:black">{{ eventname }}</a></h1>
+		<h1>{{eventid}}</h1>
 		<table>
 			<thead>
 				<tr>
 					<th>Student</th>
-					<th>Heat</th>
+					<th>Time</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,9 +21,6 @@
 						<td><a href="#" title="{{ student[1] }}" style="text-decoration:none;color:black">{{ student[0] }}</a></td>
 						<td>
 							<input class="heatinput" value="{{ student[2] }}" type="value", min=1, id="inputNumber{{ student[3] }}">
-							<button class="fa fa-plus-square changebutton" id="plusButton{{ student[3] }}"></button>
-							<button class="fa fa-minus-square changebutton" id="minusButton{{ student[3] }}"></button>
-							<button class="fa fa-times-circle changebutton" id="clearButton{{ student[3] }}"></button>
 						</td>
 					</tr>
 				{% endfor %}
@@ -32,19 +29,6 @@
 		<button onclick="save()">Save!</button>
 	</body>
 	<script>
-		{% for student in students %}
-		plusButton{{ student[3] }}.onclick = function () {
-			inputNumber{{ student[3] }}.value=Number(inputNumber{{ student[3] }}.value)+1;
-		}
-		minusButton{{ student[3] }}.onclick = function () {
-			if (Number(inputNumber{{ student[3] }}.value) > 1) {
-				inputNumber{{ student[3] }}.value=Number(inputNumber{{ student[3] }}.value)-1;
-			}
-		}
-		clearButton{{ student[3] }}.onclick = function () {
-			inputNumber{{ student[3] }}.value="";
-		}
-		{% endfor %}
 		function save () {
 			var xhr = new XMLHttpRequest();
 			xhr.open("POST", "/api/savestudents/{{eventid}}", true);
